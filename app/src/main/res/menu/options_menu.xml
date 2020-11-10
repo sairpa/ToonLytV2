@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/switch_theme" android:id="@+id/theme_menu"  android:checkable="true"/>
+    <item android:title="@string/gpu" android:id="@+id/switch_use_gpu_menu" android:checkable="true"/>
+    <item android:title="@string/re_run_model" android:id="@+id/rerun_button_menu"/>
+
+
+</menu>

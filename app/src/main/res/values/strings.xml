@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">ToonLytV2</string>
+    <string name="gpu" translatable="false">Use GPU</string>
+    <string name="re_run_model" translatable="false">Re-run model</string>
+    <string name="choose_a_style" translatable="false">Choose a Style</string>
+    <string name="switch_theme" translatable="false">Switch Theme</string>
+</resources>
