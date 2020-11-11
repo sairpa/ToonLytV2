@@ -3,6 +3,8 @@
     package="org.tensorflow.lite.examples.rpa">
     <uses-sdk />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.camera.any" />
     <application
         android:allowBackup="true"

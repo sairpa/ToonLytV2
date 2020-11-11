@@ -2,8 +2,7 @@ package com.toonlyt.rpa
 import android.Manifest
 import android.content.ContentValues
 import android.content.Context
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.hardware.camera2.CameraCharacteristics
@@ -13,23 +12,17 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Process
 import android.provider.MediaStore
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.HorizontalScrollView
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Switch
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
@@ -38,20 +31,19 @@ import com.toonlyt.rpa.STModel.MLExecutionViewModel
 import com.toonlyt.rpa.STModel.ModelExecutionResult
 import com.toonlyt.rpa.STModel.StyleFragment
 import com.toonlyt.rpa.STModel.StyleTransferModelExecutor
-import java.io.File
-import java.nio.charset.Charset
-import java.security.MessageDigest
-import java.util.concurrent.Executors
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.async
 import com.toonlyt.rpa.camera.CameraFragment
 import com.toonlyt.rpa.camera.ImageUtils
 import kotlinx.android.synthetic.main.activity_main.*
-import org.tensorflow.lite.examples.rpa.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.async
+import org.tensorflow.lite.examples.rpa.R
+import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import kotlin.properties.Delegates
+import java.nio.charset.Charset
+import java.security.MessageDigest
+import java.util.concurrent.Executors
 
 private const val REQUEST_CODE_PERMISSIONS = 10
 private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
@@ -71,12 +63,14 @@ class MainActivity :
   private lateinit var originalImageView: ImageView
   private lateinit var styleImageView: ImageView
   private var rerunButton: Int = 0
+  private val pickImage = 100
   private lateinit var captureButton: ImageButton
   private lateinit var progressBar: ProgressBar
   lateinit var imgsave:Bitmap
   private lateinit var horizontalScrollView: HorizontalScrollView
   private var lastSavedFile = ""
   private var useGPU = false
+  private var imageUri: Uri? = null
   private lateinit var styleTransferModelExecutor: StyleTransferModelExecutor
   private val inferenceThread = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
   private val mainScope = MainScope()
@@ -90,6 +84,7 @@ class MainActivity :
     viewFinder = findViewById(R.id.view_finder)
     resultImageView = findViewById(R.id.result_imageview)
     originalImageView = findViewById(R.id.original_imageview)
+
     styleImageView = findViewById(R.id.style_imageview)
     captureButton = findViewById(R.id.capture_button)
     progressBar = findViewById(R.id.progress_circular)
@@ -105,6 +100,7 @@ class MainActivity :
       )
     }
 
+
     viewModel = AndroidViewModelFactory(application).create(MLExecutionViewModel::class.java)
 
     viewModel.styledBitmap.observe(
@@ -115,6 +111,7 @@ class MainActivity :
         }
       }
     )
+
 
     mainScope.async(inferenceThread) {
       styleTransferModelExecutor = StyleTransferModelExecutor(this@MainActivity, useGPU)
@@ -147,14 +144,21 @@ class MainActivity :
     }
     Log.d(TAG, "finished onCreate!!")
   }
-
-  fun Toastmaker(s:String,i:Int){
+  fun Toastmaker(s: String, i: Int){
     if(i==1){
-      Toast.makeText(applicationContext,s,Toast.LENGTH_SHORT).show()
+      Toast.makeText(applicationContext, s, Toast.LENGTH_SHORT).show()
     }
     else{
-      Toast.makeText(applicationContext,s,Toast.LENGTH_LONG).show()
+      Toast.makeText(applicationContext, s, Toast.LENGTH_LONG).show()
     }
+  }
+
+  fun openGallery(view: View){
+
+      view.setOnClickListener {
+        Toastmaker("Feature in works",0)
+      }
+
   }
 
   fun saveMediaToStorage(bitmap: Bitmap) {
@@ -181,19 +185,19 @@ class MainActivity :
     fos?.use {
       //Finally writing the bitmap to the output stream that we opened
       bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-      Toastmaker("Saved to Memory",0)
+      Toastmaker("Saved to Memory", 0)
     }
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-      menuInflater.inflate(R.menu.options_menu,menu)
+      menuInflater.inflate(R.menu.options_menu, menu)
     return true
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when(item.itemId){
-      R.id.switch_use_gpu_menu->{
-        Toast.makeText(applicationContext,"Dakalti continue!",Toast.LENGTH_SHORT).show()
+      R.id.switch_use_gpu_menu -> {
+        Toast.makeText(applicationContext, "Dakalti continue!", Toast.LENGTH_SHORT).show()
         item.setChecked(!item.isChecked)
 
         useGPU = item.isChecked
@@ -206,15 +210,15 @@ class MainActivity :
         true
       }
 
-      R.id.theme_menu->{
-        Toast.makeText(applicationContext,"Working on this!",Toast.LENGTH_SHORT).show()
+      R.id.theme_menu -> {
+        Toast.makeText(applicationContext, "Working on this!", Toast.LENGTH_SHORT).show()
         item.setChecked(!item.isChecked)
         true
       }
 
-      R.id.rerun_button_menu->{
-        Toast.makeText(applicationContext,"Injhaara!",Toast.LENGTH_SHORT).show()
-        if(rerunButton == 1) {
+      R.id.rerun_button_menu -> {
+        Toast.makeText(applicationContext, "Injhaara!", Toast.LENGTH_SHORT).show()
+        if (rerunButton == 1) {
           startRunningModel()
         }
         true
@@ -319,9 +323,6 @@ class MainActivity :
     }
   }
 
-  /**
-   * Check if all permission specified in the manifest have been granted
-   */
   private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
     checkPermission(
       it, Process.myPid(), Process.myUid()
@@ -336,8 +337,6 @@ class MainActivity :
     setImageView(originalImageView, lastSavedFile)
   }
 
-  // And update once new picture is taken?
-  // Alternatively we can provide user an ability to select any of taken photos
   private fun getLastTakenPicture(): String {
     val directory = baseContext.filesDir // externalMediaDirs.first()
     var files =
@@ -410,6 +409,8 @@ class MainActivity :
     companion object {
       private const val ID = "com.rpa.CropTop"
       private val ID_BYTES = ID.toByteArray(Charset.forName("UTF-8"))
+
     }
   }
+
 }

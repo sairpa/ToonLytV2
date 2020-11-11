@@ -300,7 +300,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$PROJECT_DIR$/../../Android/Sdk/icons/material/materialiconstwotone/flip_camera_android/twotone_flip_camera_android_24.xml" />
+                                      <entry key="url" value="file:$PROJECT_DIR$/../../Android/Sdk/icons/material/materialiconstwotone/camera_alt/twotone_camera_alt_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -310,7 +310,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_switch" />
+                            <entry key="color" value="ff4f2f" />
+                            <entry key="outputName" value="orignal" />
                           </map>
                         </option>
                       </PersistentState>
