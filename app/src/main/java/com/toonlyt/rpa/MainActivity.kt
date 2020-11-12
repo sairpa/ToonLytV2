@@ -197,27 +197,41 @@ class MainActivity :
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when(item.itemId){
       R.id.switch_use_gpu_menu -> {
-        Toast.makeText(applicationContext, "Dakalti continue!", Toast.LENGTH_SHORT).show()
         item.setChecked(!item.isChecked)
 
         useGPU = item.isChecked
-        enableControls(false)
-        mainScope.async(inferenceThread) {
-          styleTransferModelExecutor.close()
-          styleTransferModelExecutor = StyleTransferModelExecutor(this@MainActivity, useGPU)
-          runOnUiThread { enableControls(true) }
+
+          if(useGPU){
+            Toastmaker("GPU Boost Activated",0)
+          }
+        else{
+            Toastmaker("GPU Boost Deactivated",0)
+          }
+          enableControls(false)
+          mainScope.async(inferenceThread) {
+            styleTransferModelExecutor.close()
+            styleTransferModelExecutor = StyleTransferModelExecutor(this@MainActivity, useGPU)
+            runOnUiThread { enableControls(true) }
         }
         true
       }
 
       R.id.theme_menu -> {
-        Toast.makeText(applicationContext, "Working on this!", Toast.LENGTH_SHORT).show()
         item.setChecked(!item.isChecked)
+        if(item.isChecked){
+          Toastmaker("Dark Mode Activated",0)
+          rootlayout.setBackgroundResource(R.drawable.blackback)
+        }
+        else{
+          Toastmaker( "Light Mode Activated",0)
+          rootlayout.setBackgroundResource(R.drawable.whiteback)
+        }
+
         true
       }
 
       R.id.rerun_button_menu -> {
-        Toast.makeText(applicationContext, "Injhaara!", Toast.LENGTH_SHORT).show()
+        Toastmaker("Re Running the Model",0)
         if (rerunButton == 1) {
           startRunningModel()
         }
