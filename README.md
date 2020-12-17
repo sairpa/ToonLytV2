@@ -13,6 +13,15 @@ generate stylized image.
 - Has a CPU/GPU switch for controlling time
 - Has a Re Run Button to increase convenience 
 
+## Images:
+
+Process: Pastiche Creation
+![Input -> Output](/Images/Process.png)
+App:
+![Main UI](/Images/App.png)
+![Styles](/Images/App1.png)
+
+
 ## Future Development:
 - Include a GAN model to retain all input characteristics
 - Making the UI more intuitive
