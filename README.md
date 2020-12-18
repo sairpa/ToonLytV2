@@ -15,10 +15,13 @@ generate stylized image.
 
 ## Images:
 
-Process: Pastiche Creation
+### Logo:
 ![Logo](/Images/Logo.png)
+
+### Process: Pastiche Creation
 ![Input -> Output](/Images/Process.png)
-App:
+
+### App:
 ![Main UI](/Images/App.png)
 ![Styles](/Images/App1.png)
 
