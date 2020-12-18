@@ -1,6 +1,6 @@
 # ToonLytV2🎨📸
 ## tl;dr:
-### An Android app which helps you to stylise images with different styles. You have access to 15+ style images which is used to blend with. It is available for all Android Phones above Android 5.0 - Lollipop.
+### An Android app which helps you to stylise images with different styles. You have access to 15+ style images which is used to blend with. It is available for all **Android Phones above Android 8.0 - Oreo**
 Download for Android
 
 ## Intro:
@@ -16,6 +16,7 @@ generate stylized image.
 ## Images:
 
 Process: Pastiche Creation
+![Logo](/Images/Logo.png)
 ![Input -> Output](/Images/Process.png)
 App:
 ![Main UI](/Images/App.png)
