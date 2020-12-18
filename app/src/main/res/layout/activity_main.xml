@@ -27,7 +27,7 @@
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/logo_round" />
 
                 <TextView
                     android:layout_width="wrap_content"
