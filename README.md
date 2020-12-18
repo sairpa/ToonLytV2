@@ -2,8 +2,7 @@
 ## tl;dr:
 ### An Android app which helps you create pastiches and cartoonised images. You have access to 15+ style images. It is available for all **Android Phones above *Android 8.0 - Oreo**
 ## Download for Android
-Download the ToonLyt APK from the latest release.
-[Download for Android](https://github.com/sairpa/ToonLytV2/releases) 
+Download the ToonLyt APK from the latest [release](https://github.com/sairpa/ToonLytV2/releases).
 
 ## Intro:
 An Android Application that uses the Machine Learning Technique - *Neural Style Transfer* to cartoonise images. This works by selecting a Style image and Source Image and finally 
