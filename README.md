@@ -25,10 +25,13 @@ An Android Application that uses the Machine Learning Technique - *Neural Style 
 ![Main UI](/Images/App.png)
 ![Styles](/Images/App1.png)
 
+## What's changed?
+- UI made more easier and recognisable to use
+- Added some visual elements to make it interesting
 
 ## Future Development:
 - Include a GAN model to retain all input characteristics
-- Making the UI more intuitive
+
 
 ## Resources used:
 
