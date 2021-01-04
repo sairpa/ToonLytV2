@@ -21,9 +21,6 @@ An Android Application that uses the Machine Learning Technique - *Neural Style 
 ### Process: Pastiche Creation
 ![Input -> Output](/Images/Process.png)
 
-### App:
-![Main UI](/Images/App.png)
-![Styles](/Images/App1.png)
 
 ## What's changed?
 - UI made more easier and recognisable to use
