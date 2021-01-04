@@ -246,9 +246,15 @@ class MainActivity :
   private fun animateCameraButton() {
     val animation = AnimationUtils.loadAnimation(this, R.anim.scale_anim)
     animation.interpolator = BounceInterpolator()
-    capture_button.animation = animation
+    styleImageView.animation = animation
+    btn_save.animation = animation
+    btn_upload.animation = animation
     toggle_button.animation = animation
     captureButton.animation = animation
+   toggle_button.animation.start()
+    styleImageView.animation.start()
+    btn_save.animation.start()
+    btn_upload.animation.start()
     captureButton.animation.start()
   }
 
