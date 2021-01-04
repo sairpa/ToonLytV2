@@ -52,7 +52,7 @@ class MainActivity :
   AppCompatActivity(),
         StyleFragment.OnListFragmentInteractionListener,
   CameraFragment.OnCaptureFinished {
-  var context:Context = this
+  var context: Context = this
   private var isRunningModel = false
   private val stylesFragment: StyleFragment = StyleFragment()
   private var selectedStyle: String = ""
@@ -64,9 +64,9 @@ class MainActivity :
   private lateinit var styleImageView: ImageView
   private var rerunButton: Int = 0
   private val pickImage = 100
-  private lateinit var captureButton: ImageButton
+  private lateinit var captureButton: Button
   private lateinit var progressBar: ProgressBar
-  lateinit var imgsave:Bitmap
+  lateinit var imgsave: Bitmap
   private lateinit var horizontalScrollView: HorizontalScrollView
   private var lastSavedFile = ""
   private var useGPU = false
@@ -84,7 +84,6 @@ class MainActivity :
     viewFinder = findViewById(R.id.view_finder)
     resultImageView = findViewById(R.id.result_imageview)
     originalImageView = findViewById(R.id.original_imageview)
-
     styleImageView = findViewById(R.id.style_imageview)
     captureButton = findViewById(R.id.capture_button)
     progressBar = findViewById(R.id.progress_circular)
@@ -94,9 +93,9 @@ class MainActivity :
       addCameraFragment()
     } else {
       ActivityCompat.requestPermissions(
-        this,
-        REQUIRED_PERMISSIONS,
-        REQUEST_CODE_PERMISSIONS
+              this,
+              REQUIRED_PERMISSIONS,
+              REQUEST_CODE_PERMISSIONS
       )
     }
 
@@ -104,12 +103,12 @@ class MainActivity :
     viewModel = AndroidViewModelFactory(application).create(MLExecutionViewModel::class.java)
 
     viewModel.styledBitmap.observe(
-      this,
-      Observer { resultImage ->
-        if (resultImage != null) {
-          updateUIWithResults(resultImage)
-        }
-      }
+            this,
+            Observer { resultImage ->
+              if (resultImage != null) {
+                updateUIWithResults(resultImage)
+              }
+            }
     )
 
 
@@ -136,14 +135,15 @@ class MainActivity :
     animateCameraButton()
     setupControls()
     enableControls(true)
- context = applicationContext
+    context = applicationContext
     btn_save.setOnClickListener {
-      enableControls(false)
-      saveMediaToStorage(imgsave)
-      enableControls(true)
+        enableControls(false)
+        saveMediaToStorage(imgsave)
+        enableControls(true)
+      Log.d(TAG, "finished onCreate!!")
     }
-    Log.d(TAG, "finished onCreate!!")
-  }
+    }
+
   fun Toastmaker(s: String, i: Int){
     if(i==1){
       Toast.makeText(applicationContext, s, Toast.LENGTH_SHORT).show()
@@ -220,11 +220,12 @@ class MainActivity :
         item.setChecked(!item.isChecked)
         if(item.isChecked){
           Toastmaker("Dark Mode Activated",0)
-          rootlayout.setBackgroundResource(R.drawable.blackback)
+          rootlayout.setBackgroundResource(R.color.black)
         }
         else{
           Toastmaker( "Light Mode Activated",0)
-          rootlayout.setBackgroundResource(R.drawable.whiteback)
+
+          rootlayout.setBackgroundResource(R.color.white)
         }
 
         true
@@ -245,6 +246,8 @@ class MainActivity :
   private fun animateCameraButton() {
     val animation = AnimationUtils.loadAnimation(this, R.anim.scale_anim)
     animation.interpolator = BounceInterpolator()
+    capture_button.animation = animation
+    toggle_button.animation = animation
     captureButton.animation = animation
     captureButton.animation.start()
   }
@@ -292,7 +295,7 @@ class MainActivity :
       cameraFragment.takePicture()
     }
 
-    findViewById<ImageButton>(R.id.toggle_button).setOnClickListener {
+    findViewById<Button>(R.id.toggle_button).setOnClickListener {
       lensFacing = if (lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
         CameraCharacteristics.LENS_FACING_FRONT
       } else {

@@ -5,7 +5,7 @@
     android:id="@+id/rootlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whiteback"
+
     tools:context="com.toonlyt.rpa.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -46,15 +46,20 @@
     <LinearLayout
         android:id="@+id/linlayanchor"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingTop="?attr/actionBarSize">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:elevation="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/boxoid_btn"
             android:gravity="center">
 
             <FrameLayout
@@ -64,9 +69,17 @@
                 android:paddingTop="16dp" />
         </LinearLayout>
 
+
+
         <HorizontalScrollView
             android:id="@+id/horizontal_scroll_view"
             android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:elevation="10dp"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/boxoid_btn"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -82,35 +95,12 @@
                         android:id="@+id/original_imageview"
                         android:layout_width="@dimen/previewSize"
                         android:layout_height="@dimen/previewSize"
-                        android:background="#B1A7A7"
+                        android:layout_marginLeft="15dp"
                         android:padding="4dp"
                         android:src="@drawable/orignal" />
                 </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="@dimen/previewSize"
-                    android:layout_height="@dimen/previewSize">
 
-                    <ImageView
-                        android:id="@+id/style_imageview"
-                        android:layout_width="@dimen/previewSize"
-                        android:layout_height="@dimen/previewSize"
-                        android:background="#80FFFFFF"
-                        android:padding="4dp" />
-
-                    <TextView
-                        android:id="@+id/choose_style_text_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#B1A7A7"
-                        android:fontFamily="@font/bangers"
-                        android:gravity="center"
-                        android:text="@string/choose_a_style"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@android:color/black"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-                </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="@dimen/previewSize"
@@ -129,40 +119,196 @@
                         android:padding="4dp" />
                 </FrameLayout>
 
+
             </LinearLayout>
         </HorizontalScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            android:elevation="10dp"
+            android:background="@drawable/boxoid_btn"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_save"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
 
-                android:layout_marginLeft="65dp"
-                android:background="@drawable/boxoid_btn"
-                android:fontFamily="@font/atma_semibold"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1.5">
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="Download"
+                    android:background="@drawable/boxoid1_btn"
+                    android:src="@drawable/ic_outline_save"
+                    android:textAllCaps="false"
+                    />
+
+                <Button
+                    android:id="@+id/btn_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boxoid1_btn"
+                    android:text="Gallery"
+                    android:onClick="openGallery"
+                    android:textAllCaps="false"
+                    />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:background="@drawable/boxoid1_btn"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/style_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="4dp" />
+
+                <TextView
+                    android:id="@+id/choose_style_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/allan"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:text="Style"
+                    android:textColor="#FFFFFF"
+
+                    />
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1.5">
+
+                <Button
+                    android:id="@+id/capture_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boxoid1_btn"
+                    android:text="Capture"
+                    android:onClick="openGallery"
+                    android:textAllCaps="false"
+                    />
+
+
+                <Button
+                    android:id="@+id/toggle_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:background="@drawable/boxoid1_btn"
+                    android:text="Toggle"
+                    android:onClick="openGallery"
+                    android:textAllCaps="false"
+                    />
+
+            </LinearLayout>
+
+
+            <!--<Button
+                android:id="@+id/btn_save"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="Download"
+                android:background="@drawable/boxoid1_btn"
                 android:src="@drawable/ic_outline_save"
                 android:textAllCaps="false"
                 />
 
+
             <Button
                 android:id="@+id/btn_upload"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="75dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/boxoid1_btn"
-                android:fontFamily="monospace"
-                android:text="+"
+                android:text="Upload"
                 android:onClick="openGallery"
                 android:textAllCaps="false"
-                android:textSize="45sp"
-                android:textStyle="bold" />
+                />
+
+            <Button
+                android:id="@+id/toggle_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/boxoid1_btn"
+                android:text="Restart"
+                android:onClick="openGallery"
+                android:textAllCaps="false"
+                />
+
+            <Button
+                android:id="@+id/style_imageview"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/boxoid1_btn"
+                android:text="Styles"
+                android:onClick="openGallery"
+                android:textAllCaps="false"
+                />
+
+            <Button
+                android:id="@+id/capture_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/boxoid1_btn"
+                android:text="Capture"
+                android:onClick="openGallery"
+                android:textAllCaps="false"
+                />-->
+
+
+
+
 
         </LinearLayout>
 
@@ -170,7 +316,9 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/capture_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -200,5 +348,5 @@
         app:backgroundTint="#4BD62C"
         app:layout_anchor="@id/dummy"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@drawable/ic_switch" />
+        app:srcCompat="@drawable/ic_switch" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
