@@ -175,6 +175,7 @@
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/StyleButton"
                 android:layout_width="wrap_content"
                 android:background="@drawable/boxoid1_btn"
                 android:layout_gravity="center"
@@ -186,14 +187,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="4dp" />
+                     />
 
                 <TextView
                     android:id="@+id/choose_style_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/allan"
+                    android:textStyle="italic"
+                    android:clickable="true"
                     android:gravity="center"
                     android:textSize="30sp"
                     android:text="Style"

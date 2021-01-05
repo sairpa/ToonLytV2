@@ -75,7 +75,7 @@ class MainActivity :
   private val inferenceThread = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
   private val mainScope = MainScope()
   private var lensFacing = CameraCharacteristics.LENS_FACING_FRONT
-
+  lateinit var chooseStyleLabel: TextView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -88,7 +88,7 @@ class MainActivity :
     captureButton = findViewById(R.id.capture_button)
     progressBar = findViewById(R.id.progress_circular)
     horizontalScrollView = findViewById(R.id.horizontal_scroll_view)
-
+    chooseStyleLabel = findViewById(R.id.choose_style_text_view)
     if (allPermissionsGranted()) {
       addCameraFragment()
     } else {
@@ -123,10 +123,25 @@ class MainActivity :
     rerunButton = 0
 
     styleImageView.setOnClickListener {
+
       if (!isRunningModel) {
         stylesFragment.show(supportFragmentManager, "StylesFragment")
       }
+      else{
+        Toastmaker("Please wait the model is running!",1)
+      }
     }
+
+    chooseStyleLabel.setOnClickListener {
+      if (!isRunningModel) {
+        stylesFragment.show(supportFragmentManager, "StylesFragment")
+      }
+      else{
+        Toastmaker("Please wait the model is running!",1)
+      }
+    }
+
+
 
     progressBar.visibility = View.INVISIBLE
     lastSavedFile = getLastTakenPicture()
@@ -246,13 +261,11 @@ class MainActivity :
   private fun animateCameraButton() {
     val animation = AnimationUtils.loadAnimation(this, R.anim.scale_anim)
     animation.interpolator = BounceInterpolator()
-    styleImageView.animation = animation
     btn_save.animation = animation
     btn_upload.animation = animation
     toggle_button.animation = animation
     captureButton.animation = animation
    toggle_button.animation.start()
-    styleImageView.animation.start()
     btn_save.animation.start()
     btn_upload.animation.start()
     captureButton.animation.start()
@@ -378,7 +391,6 @@ class MainActivity :
     Log.d(TAG, item)
     selectedStyle = item
     stylesFragment.dismiss()
-
     startRunningModel()
   }
 
@@ -388,8 +400,7 @@ class MainActivity :
 
   private fun startRunningModel() {
     if (!isRunningModel && lastSavedFile.isNotEmpty() && selectedStyle.isNotEmpty()) {
-      val chooseStyleLabel: TextView = findViewById(R.id.choose_style_text_view)
-      chooseStyleLabel.visibility = View.GONE
+      chooseStyleLabel.visibility = View.INVISIBLE
       enableControls(false)
       setImageView(styleImageView, getUriFromAssetThumb(selectedStyle))
       resultImageView.visibility = View.INVISIBLE
