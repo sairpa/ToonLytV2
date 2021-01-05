@@ -126,6 +126,7 @@ class MainActivity :
 
       if (!isRunningModel) {
         stylesFragment.show(supportFragmentManager, "StylesFragment")
+        enableControls(true)
       }
       else{
         Toastmaker("Please wait the model is running!",1)
@@ -135,6 +136,7 @@ class MainActivity :
     chooseStyleLabel.setOnClickListener {
       if (!isRunningModel) {
         stylesFragment.show(supportFragmentManager, "StylesFragment")
+        enableControls(true)
       }
       else{
         Toastmaker("Please wait the model is running!",1)
