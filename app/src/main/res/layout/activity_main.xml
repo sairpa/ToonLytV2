@@ -5,9 +5,7 @@
     android:id="@+id/rootlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.toonlyt.rpa.MainActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Toolbar"
         android:layout_width="match_parent"
@@ -46,7 +44,7 @@
     <LinearLayout
         android:id="@+id/linlayanchor"
         android:layout_width="match_parent"
-
+        android:weightSum="3"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -55,11 +53,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:background="@drawable/boxoid_btn"
+            android:elevation="10dp"
             android:gravity="center">
 
             <FrameLayout
@@ -70,17 +70,18 @@
         </LinearLayout>
 
 
-
         <HorizontalScrollView
             android:id="@+id/horizontal_scroll_view"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:elevation="10dp"
-            android:padding="8dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/boxoid_btn"
             android:layout_marginRight="10dp"
-            android:layout_height="wrap_content">
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/boxoid_btn"
+            android:elevation="10dp"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,7 +100,6 @@
                         android:padding="4dp"
                         android:src="@drawable/orignal" />
                 </FrameLayout>
-
 
 
                 <FrameLayout
@@ -123,106 +123,108 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="4"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
 
-            android:elevation="10dp"
+            android:layout_weight="1"
             android:background="@drawable/boxoid_btn"
-            android:orientation="horizontal">
+            android:baselineAligned="false"
+            android:elevation="10dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1.5">
+                android:layout_weight="1.5"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#FFFFFF"
-                    android:layout_weight="1"
                     android:layout_margin="10dp"
-                    android:text="Download"
+                    android:layout_weight="1"
                     android:background="@drawable/boxoid1_btn"
+                    android:gravity="center"
                     android:src="@drawable/ic_outline_save"
+                    android:text="Download"
                     android:textAllCaps="false"
-                    />
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/btn_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#FFFFFF"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/boxoid1_btn"
-                    android:text="Gallery"
+                    android:gravity="center"
                     android:onClick="openGallery"
+                    android:text="Gallery"
                     android:textAllCaps="false"
-                    />
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/StyleButton"
                 android:layout_width="wrap_content"
-                android:background="@drawable/boxoid1_btn"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
+                android:background="@drawable/boxoid1_btn">
 
                 <ImageView
                     android:id="@+id/style_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                     />
+                    android:padding="10dp" />
 
                 <TextView
                     android:id="@+id/choose_style_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textStyle="italic"
                     android:clickable="true"
                     android:gravity="center"
-                    android:textSize="30sp"
                     android:text="Style"
                     android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:textStyle="italic"
 
                     />
             </FrameLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1.5">
+                android:layout_weight="1.5"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/capture_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#FFFFFF"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/boxoid1_btn"
-                    android:text="Capture"
+                    android:gravity="center"
                     android:onClick="openGallery"
+                    android:text="Capture"
                     android:textAllCaps="false"
-                    />
+                    android:textColor="#FFFFFF" />
 
 
                 <Button
@@ -231,13 +233,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:textColor="#FFFFFF"
                     android:layout_weight="1"
                     android:background="@drawable/boxoid1_btn"
-                    android:text="Toggle"
                     android:onClick="openGallery"
+                    android:text="Toggle"
                     android:textAllCaps="false"
-                    />
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
@@ -254,8 +255,6 @@
                 android:src="@drawable/ic_outline_save"
                 android:textAllCaps="false"
                 />
-
-
             <Button
                 android:id="@+id/btn_upload"
                 android:layout_width="80dp"
@@ -268,7 +267,6 @@
                 android:onClick="openGallery"
                 android:textAllCaps="false"
                 />
-
             <Button
                 android:id="@+id/toggle_button"
                 android:layout_width="80dp"
@@ -281,7 +279,6 @@
                 android:onClick="openGallery"
                 android:textAllCaps="false"
                 />
-
             <Button
                 android:id="@+id/style_imageview"
                 android:layout_width="80dp"
@@ -294,7 +291,6 @@
                 android:onClick="openGallery"
                 android:textAllCaps="false"
                 />
-
             <Button
                 android:id="@+id/capture_button"
                 android:layout_width="80dp"
@@ -307,9 +303,6 @@
                 android:onClick="openGallery"
                 android:textAllCaps="false"
                 />-->
-
-
-
 
 
         </LinearLayout>
@@ -331,7 +324,6 @@
         app:layout_anchor="@id/linlayanchor"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_capture" />
-
     <View
         android:id="@+id/dummy"
         android:layout_width="1dp"
@@ -339,7 +331,6 @@
         android:layout_marginEnd="8dp"
         app:layout_anchor="@id/capture_button"
         app:layout_anchorGravity="top|right|end" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toggle_button"
         android:layout_width="match_parent"
