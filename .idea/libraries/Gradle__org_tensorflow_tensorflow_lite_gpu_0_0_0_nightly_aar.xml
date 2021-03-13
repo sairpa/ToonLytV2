@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb6d4d72436476534f14697986314923/jetified-tensorflow-lite-gpu-0.0.0-nightly/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb6d4d72436476534f14697986314923/jetified-tensorflow-lite-gpu-0.0.0-nightly/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb6d4d72436476534f14697986314923/jetified-tensorflow-lite-gpu-0.0.0-nightly/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/30b93f6ae2558d2e711aa8f4a29e3f31/jetified-tensorflow-lite-gpu-0.0.0-nightly/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/30b93f6ae2558d2e711aa8f4a29e3f31/jetified-tensorflow-lite-gpu-0.0.0-nightly/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/30b93f6ae2558d2e711aa8f4a29e3f31/jetified-tensorflow-lite-gpu-0.0.0-nightly/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

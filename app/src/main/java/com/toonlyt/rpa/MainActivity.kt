@@ -2,7 +2,6 @@ package com.toonlyt.rpa
 import android.Manifest
 import android.content.ContentValues
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.hardware.camera2.CameraCharacteristics
@@ -183,14 +182,14 @@ class MainActivity :
     val filename = "${System.currentTimeMillis()}.jpg"
     var fos: OutputStream? = null
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-      context?.contentResolver?.also { resolver ->
+      context.contentResolver?.also { resolver ->
         val contentValues = ContentValues().apply {
           put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
           put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
           put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
         }
         val imageUri: Uri? =
-                resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+          resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
         fos = imageUri?.let { resolver.openOutputStream(it) }
       }
     } else {
@@ -214,33 +213,31 @@ class MainActivity :
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when(item.itemId){
       R.id.switch_use_gpu_menu -> {
-        item.setChecked(!item.isChecked)
+        item.isChecked = !item.isChecked
 
         useGPU = item.isChecked
 
-          if(useGPU){
-            Toastmaker("GPU Boost Activated",0)
-          }
-        else{
-            Toastmaker("GPU Boost Deactivated",0)
-          }
-          enableControls(false)
-          mainScope.async(inferenceThread) {
-            styleTransferModelExecutor.close()
-            styleTransferModelExecutor = StyleTransferModelExecutor(this@MainActivity, useGPU)
-            runOnUiThread { enableControls(true) }
+        if (useGPU) {
+          Toastmaker("GPU Boost Activated", 0)
+        } else {
+          Toastmaker("GPU Boost Deactivated", 0)
+        }
+        enableControls(false)
+        mainScope.async(inferenceThread) {
+          styleTransferModelExecutor.close()
+          styleTransferModelExecutor = StyleTransferModelExecutor(this@MainActivity, useGPU)
+          runOnUiThread { enableControls(true) }
         }
         true
       }
 
       R.id.theme_menu -> {
-        item.setChecked(!item.isChecked)
-        if(item.isChecked){
-          Toastmaker("Dark Mode Activated",0)
+        item.isChecked = !item.isChecked
+        if (item.isChecked) {
+          Toastmaker("Dark Mode Activated", 0)
           rootlayout.setBackgroundResource(R.color.black)
-        }
-        else{
-          Toastmaker( "Light Mode Activated",0)
+        } else {
+          Toastmaker("Light Mode Activated", 0)
 
           rootlayout.setBackgroundResource(R.color.white)
         }
@@ -298,6 +295,7 @@ class MainActivity :
     var msg = modelExecutionResult.executionLog
     imgsave = modelExecutionResult.styledImage
     horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+    btn_save.isEnabled = true
   }
 
   private fun enableControls(enable: Boolean) {
