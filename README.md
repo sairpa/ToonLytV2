@@ -16,7 +16,7 @@ This application basically uses one of the famous Machine Learning Techniques - 
 
 ## Images:
 
-###A glimpse on what's inside:
+### A glimpse on what's inside:
 ![App](/Images/ToonLyt.jpg)
 
 ### Logo:
